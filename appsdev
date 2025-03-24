@@ -1,0 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
+namespace SimpleFavoriteCartoonFormApp
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+
+            string[] cartoonChar = { "Spongebob", "Patrick", "Mr. Krabs", "Sandy" };
+            sComboBox.Items.AddRange(cartoonChar);
+
+            sComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            sComboBox.SelectedIndex = 0;
+        }
+
+        private void viewBtn_Click(object sender, EventArgs e)
+        {
+
+        sComboBox.Items.Clear();
+
+            if (sComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a cartoon character first.");
+                return;
+            }
+
+            string selectedItem = sComboBox.SelectedItem.ToString();
+
+            switch (selectedItem)
+            {
+                case "Spongebob":
+                    pictureBox1.Image = Image.FromFile(@"C:/Users/OO125/Pictures/images.jpg");
+                    break;
+
+                case "Patrick":
+                    pictureBox1.Image = Image.FromFile(@"C:/Users/OO125/Pictures/pat.jpg");
+                    break;
+
+                case "Mr. Krabs":
+                    pictureBox1.Image = Image.FromFile(@"C:/Users/OO125/Pictures/krab.jpg");
+                    break;
+
+                case "Sandy":
+                    pictureBox1.Image = Image.FromFile(@"C:/Users/OO125/Pictures/sandy.jpg");
+                    break;
+
+                default:
+                    pictureBox1.Image = null;
+                    break;
+            }
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = null;
+        }
+    }
+}
